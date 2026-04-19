@@ -12,11 +12,14 @@ interface Ipost {
 }
 
 const Posts = async () => {
-  const res = await fetch(base_url)
+  const res = await fetch(base_url, {
+    cache: "no-store"
+  }); 
   const data: Ipost[] = await res.json()
 
   return (
     <>
+    <p>{new Date().toLocaleDateString()}</p>
       {data.map((post) => (
         <CardList key={post.id}>
           <p>{post.id}</p>
@@ -30,7 +33,7 @@ const Posts = async () => {
         <CardList>
           <p>Contoh isi</p>
         </CardList>
-        <ViewUserBotton />
+        {/* <ViewUserBotton /> */}
       </div>
     </>
   )
